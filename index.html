@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./styles/index.css"/>
 </head>
 <body>
-     <div class="mainbox">
+     <div class="mainbox" id="mainbox">
         
          <!--
          <div class="imagebox">
@@ -19,44 +19,53 @@
         -->
      </div>
 </body>
-</html>
 <script >
 
-async function showImg(){
-    try{
-    let res = await fetch("https://api.unsplash.com/photos/?client_id=F1Yv3ataOMjDmFubHoB7wlKZfrgZzzmtP3PAZfKtKnI")
-    let data= await res.json()
-
-    console.log("data",data)
-  
-    appendImg(data)
-
-    }catch(e){
-        console.log(e)
+    async function showImg(){
+        try{
+        let res = await fetch("https://api.unsplash.com/photos/?client_id=F1Yv3ataOMjDmFubHoB7wlKZfrgZzzmtP3PAZfKtKnI")
+        let data= await res.json()
+    
+        console.log("data",data)
+      
+        appendImg(data)
+    
+        }catch(e){
+            console.log(e)
+        }
     }
-}
-
-showImg()
-
-let mainbox = document.getElementById("mainbox")
-
-function appendImg(datas){
- 
+    
+    showImg()
+    
+    let mainbox = document.getElementById("mainbox")
+    
+    function appendImg(datas){
+     
+       
+      datas?.forEach((data)=>{
+           
+             let div = document.createElement("div")
+             div.setAttribute("class","imagebox")
+    
+                 let img1 = document.createElement("img")
+                 img1.src = data.urls.small
+                 img1.setAttribute("class","img")
+    
+             div.append(img1)
+          mainbox.append(div) 
+         })
+    
+    }
+    
+    window.addEventListener("scroll",()=>{
+        const { scrollHeight,scrollTop,clientHeight} = document.documentElement
    
-  datas?.forEach((data)=>{
-         console.log("scbaskcjasbc")
-         let div = document.createElement("div")
-         div.setAttribute("class","imagebox")
+        if(clientHeight + scrollTop >= scrollHeight){
+            console.log("to the bottom")
+            showImg()
+        }
+    })
 
-             let img = document.createElement("img")
-             img.src = "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
-             img.setAttribute("class","img")
+    </script>
 
-         div.append(img)
-      mainbox.append(div) 
-     })
-
-}
-
-
-</script>
+</html>
