@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Scrolling</title>
+    <link rel="stylesheet" href="./styles/index.css"/>
+</head>
+<body>
+     <div class="mainbox">
+        
+         <!--
+         <div class="imagebox">
+            <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" class="img"/>
+
+         </div>
+         
+        -->
+     </div>
+</body>
+</html>
+<script >
+
+async function showImg(){
+    try{
+    let res = await fetch("https://api.unsplash.com/photos/?client_id=F1Yv3ataOMjDmFubHoB7wlKZfrgZzzmtP3PAZfKtKnI")
+    let data= await res.json()
+
+    console.log("data",data)
+  
+    appendImg(data)
+
+    }catch(e){
+        console.log(e)
+    }
+}
+
+showImg()
+
+let mainbox = document.getElementById("mainbox")
+
+function appendImg(datas){
+ 
+   
+  datas?.forEach((data)=>{
+         console.log("scbaskcjasbc")
+         let div = document.createElement("div")
+         div.setAttribute("class","imagebox")
+
+             let img = document.createElement("img")
+             img.src = "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+             img.setAttribute("class","img")
+
+         div.append(img)
+      mainbox.append(div) 
+     })
+
+}
+
+
+</script>

@@ -1,0 +1,17 @@
+.mainbox{
+    /* border: 1px solid black; */
+    position: absolute;
+    top: 40vh;
+    left: 20vw;
+    padding: 1%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 2%;
+}
+.imagebox{
+    width: 300px;
+    margin: 1%;
+}
+.img{
+    max-width: 100%;
+}
